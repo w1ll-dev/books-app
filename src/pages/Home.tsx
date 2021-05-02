@@ -1,14 +1,7 @@
 import React from "react";
-import {
-  FlatList,
-  Keyboard,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { FlatList, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { SearchInput } from "../styles/components/SearchInput";
-import {
-  HomeListContainer,
-  Wrapper,
-} from "../styles/pages/Home";
+import { HomeListContainer, Wrapper } from "../styles/pages/Home";
 import {
   WelcomeMessage,
   DiscoverBookCard,
@@ -16,6 +9,7 @@ import {
   CurrentlyReadingCard,
 } from "../components";
 import { ScrollView } from "react-native-gesture-handler";
+import { OvalExternalSvg } from "../components/svg/ovalExternalSvg";
 
 const currentReadingUri =
   "http://books.google.com/books/content?id=eLRhDgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api";
@@ -33,6 +27,7 @@ export function Home() {
       </TouchableWithoutFeedback>
       <ScrollView showsVerticalScrollIndicator={false}>
         <HomeListContainer>
+          <OvalExternalSvg />
           <ListTitle title={"Discover new book"} buttonTitle={"More"} />
           <DiscoverBookCard
             title={"Hooked"}
