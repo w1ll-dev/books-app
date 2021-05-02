@@ -1,7 +1,16 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Main } from "./src";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+import { Routes } from "./src/routes";
 
 export default function App() {
-  return <Main />;
+  const [loaded] = useFonts({
+    SFProTextRegular: require("./src/assets/fonts/SFProText-Regular.ttf"),
+    PlayfairDisplay: require("./src/assets/fonts/PlayfairDisplay-VariableFont_wght.ttf"),
+    Roboto: require("./src/assets/fonts/Roboto-Regular.ttf"),
+  });
+
+  if (!loaded) return <AppLoading />;
+
+  return <Routes />;
 }
