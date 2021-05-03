@@ -16,6 +16,7 @@ import { OvalSvg, RectangleSvg, CircleSvg, TriangleSvg } from "./svg";
 
 interface DiscoverBookCardProps {
   title: string;
+  cardBackground: string;
   author?: string;
   imageUri?: string;
   readStats?: string;
@@ -23,13 +24,14 @@ interface DiscoverBookCardProps {
 
 export function DiscoverBookCard({
   title,
+  cardBackground,
   author,
   imageUri,
-  readStats,
+  readStats
 }: DiscoverBookCardProps) {
   return (
     <>
-    <Wrapper>
+    <Wrapper style={{backgroundColor: cardBackground}}>
       <OvalSvg />
       <BookNameContainer>
         <Container>
