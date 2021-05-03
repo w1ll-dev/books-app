@@ -11,6 +11,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import { OvalExternalSvg } from "../components/svg/";
 import { colors } from "../styles/colors";
+import { ReviewsOfTheDaysCard } from "../components/ReviewsOfTheDaysCard";
 
 const currentReadingUri =
   "http://books.google.com/books/content?id=eLRhDgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api";
@@ -50,7 +51,7 @@ export function Home() {
         </HomeListContainer>
         <HomeListContainer>
           <ListTitle title={"Reviews of The Days "} buttonTitle={"All Video"} />
-          <DiscoverBookCard cardBackground={colors.darkBlue} title={"Hooked"} />
+          <ReviewsOfTheDaysCard />
         </HomeListContainer>
       </ScrollView>
     </Wrapper>
