@@ -27,11 +27,10 @@ export function DiscoverBookCard({
   cardBackground,
   author,
   imageUri,
-  readStats
+  readStats,
 }: DiscoverBookCardProps) {
   return (
-    <>
-    <Wrapper style={{backgroundColor: cardBackground}}>
+    <Wrapper style={{ backgroundColor: cardBackground }}>
       <OvalSvg />
       <BookNameContainer>
         <Container>
@@ -51,10 +50,9 @@ export function DiscoverBookCard({
         )}
       </BookNameContainer>
       <BookImage source={{ uri: imageUri }} />
-      <RectangleSvg discoverBooksList={true}/>
+      <RectangleSvg discoverBooksList={true} />
       <TriangleSvg />
       <CircleSvg discoverBooksList={true} />
     </Wrapper>
-    </>
   );
 }
