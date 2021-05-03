@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { memo } from "react";
 import { StyleSheet } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { colors } from "../../styles/colors";
@@ -7,8 +7,8 @@ interface RectangleProps {
   discoverBooksList: boolean;
 }
 
-export function RectangleSvg({discoverBooksList}: RectangleProps) {
-  const { container, containerCurrentlyReading  } = styles;
+export default memo(({ discoverBooksList }: RectangleProps) => {
+  const { container, containerCurrentlyReading } = styles;
   return (
     <Svg
       width={46}
@@ -23,7 +23,7 @@ export function RectangleSvg({discoverBooksList}: RectangleProps) {
       />
     </Svg>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {

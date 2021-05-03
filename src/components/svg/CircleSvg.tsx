@@ -1,12 +1,13 @@
-import * as React from "react";
+import React, { memo } from "react";
 import { StyleSheet } from "react-native";
 import Svg, { Circle } from "react-native-svg";
+import { colors } from "../../styles/colors";
 
 interface CircleProps {
   discoverBooksList: boolean;
 }
 
-export function CircleSvg({ discoverBooksList }: CircleProps) {
+export default memo(({ discoverBooksList }: CircleProps) => {
   const { container, containerCurrentlyReading } = styles;
 
   return (
@@ -17,10 +18,16 @@ export function CircleSvg({ discoverBooksList }: CircleProps) {
       fill="none"
       style={discoverBooksList ? container : containerCurrentlyReading}
     >
-      <Circle cx={10} cy={10} r={9} stroke="#4550A7" strokeWidth={2} />
+      <Circle
+        cx={10}
+        cy={10}
+        r={9}
+        stroke={colors.lightPurple}
+        strokeWidth={2}
+      />
     </Svg>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {
