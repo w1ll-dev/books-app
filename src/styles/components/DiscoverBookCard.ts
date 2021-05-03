@@ -7,7 +7,6 @@ export const Wrapper = styled(Container)`
   width: 272px;
   height: 139px;
   align-items: center;
-  background: ${colors.darkBlue};
   flex-direction: row;
   border-radius: 5px;
   padding: 20px 15px;
