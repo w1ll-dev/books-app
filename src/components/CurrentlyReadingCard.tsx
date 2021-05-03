@@ -1,4 +1,5 @@
 import React from "react";
+import { View } from "react-native";
 import {
   Wrapper,
   Background,
@@ -12,9 +13,12 @@ import {
 } from "../styles/components/CurrentlyReadingCard";
 import { AntDesign } from "@expo/vector-icons";
 import { colors } from "../styles/colors";
-import { Container } from "../styles/Common";
-import { OvalSvg, RectangleSvg, CircleSvg, TriangleSvg } from "./svg";
-import { View } from "react-native";
+import {
+  RectangleSvg,
+  CircleSvg,
+  OvalCurrentlyReadingSvg,
+  BlankShapeSvg,
+} from "./svg";
 
 interface DiscoverBookCardProps {
   title: string;
@@ -34,6 +38,7 @@ export function CurrentlyReadingCard({
   return (
     <Wrapper>
       <Background>
+        <OvalCurrentlyReadingSvg />
         <BookInfoContainer>
           <View>
             <BookTitle>{title}</BookTitle>
@@ -48,6 +53,20 @@ export function CurrentlyReadingCard({
         </BookInfoContainer>
         <RectangleSvg discoverBooksList={false} />
         <CircleSvg discoverBooksList={false} />
+        <BlankShapeSvg
+          width={150}
+          height={17}
+          marginTop={-17}
+          marginLeft={210}
+          backgroundColor={colors.beige}
+        />
+        <BlankShapeSvg
+          width={40}
+          height={100}
+          marginTop={-17}
+          marginLeft={335}
+          backgroundColor={colors.beige}
+        />
       </Background>
       <BookImage source={{ uri: imageUri }} />
     </Wrapper>
