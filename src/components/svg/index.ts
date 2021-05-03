@@ -5,6 +5,7 @@ import TriangleSvg from "./TriangleSvg";
 import OvalCurrentlyReadingSvg from "./OvalCurrentlyReadingSvg";
 import BlankShapeSvg from "./BlankShapeSvg";
 import OvalExternalSvg from "./OvalExternalSvg";
+import TransparentCircularShape from "./TransparentCircularShapeSvg";
 
 export {
   OvalSvg,
@@ -14,4 +15,5 @@ export {
   OvalCurrentlyReadingSvg,
   BlankShapeSvg,
   OvalExternalSvg,
+  TransparentCircularShape
 };
