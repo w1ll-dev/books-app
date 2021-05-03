@@ -10,6 +10,7 @@ export const colors = {
   grey: "#BFBEBF",
   lightBlue: "#4ABDF1",
   darkBlue: "#00173D",
+  lightPurple: "#4550A7",
   purple: "#9013fe",
   dark: "#2A2B26",
   black: "#000000",
