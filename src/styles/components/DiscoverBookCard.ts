@@ -10,6 +10,7 @@ export const Wrapper = styled(Container)`
   flex-direction: row;
   border-radius: 5px;
   padding: 20px 15px;
+  margin-right: 10px;
 `;
 
 export const BookNameContainer = styled(Container)`
