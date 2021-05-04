@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "backgoundColor": "#00173D",
+      "title": "Hooked",
+      "author": "Nir Eyal",
+      "imageUri": "http://books.google.com/books/content?id=dsz5AwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "readStats": 120
+    },
+    {
+      "id": 2,
+      "backgoundColor": "#9013fe",
+      "title": "The one",
+      "author": "Garry Keller",
+      "imageUri": "http://books.google.com/books/content?id=rB2ZDQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "readStats": 90
+    }
+  ]
+}
