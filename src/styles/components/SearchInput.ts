@@ -10,6 +10,7 @@ export const SearchInput = styled.TextInput`
   height: 48px;
   margin-top: ${statusBarHeight + 50}px;
   padding: 0 16px;
+  color: ${colors.darkGrey};
   background: ${colors.white};
   align-items: flex-start;
   border-radius: 10px;

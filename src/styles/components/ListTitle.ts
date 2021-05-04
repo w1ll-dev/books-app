@@ -10,7 +10,7 @@ export const Wrapper = styled(Container)`
 
 export const Title = styled(CommonText)`
   font-size: 18px;
-  color: ${colors.darkGrey};
+  color: ${colors.darkerGrey};
 `;
 
 export const ButtonTitle = styled(CommonText)`

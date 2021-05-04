@@ -5,12 +5,12 @@ import { Container, CommonText } from "../Common";
 export const Wrapper = styled.View`
   flex-direction: row;
   justify-content: flex-start;
-  margin: 30px 0 0;
+  margin-bottom: 30px;
 `;
 
 export const MessageText = styled(CommonText)`
   font-size: 24px;
-  color: ${colors.darkGrey};
+  color: ${colors.darkerGrey};
 `;
 
 export const UserName = styled(CommonText)`
