@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
   FlatList,
   Keyboard,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
 } from "react-native";
 import { SearchInput } from "../styles/components/SearchInput";
 import {
@@ -10,6 +11,8 @@ import {
   HomeListContainer,
   DiscoverBookListContainer,
   BooksListContainer,
+  LoadBooksButton,
+  LoadBooksButtonLabel,
 } from "../styles/pages/Home";
 import {
   WelcomeMessage,
@@ -24,33 +27,53 @@ import { ReviewsOfTheDaysCard } from "../components/ReviewsOfTheDaysCard";
 import { data } from "../mock/discover-books.json";
 import { getBooks } from "../repository";
 import { Book } from "../repository/protocols";
+import { colors } from "../styles/colors";
+import { useDebounce } from "../hooks/useDebounce";
 
 const currentReadingImageMockUri =
   "http://books.google.com/books/content?id=eLRhDgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api";
 
 export function Home() {
   const [books, setBooks] = useState<Book[]>([]);
+  const [loadingBooks, setLoadingBooks] = useState(false);
+  const [currentSearchPage, setCurrentSearchPage] = useState(0);
+  const [searchValue, setSearchValue] = useState("");
+  const debouncedChange = useDebounce(searchForBooks, 500);
 
-  async function searchForBooks(bookInfo: string) {
-    if (bookInfo === "") {
+  async function searchForBooks() {
+    if (searchValue === "") {
       setBooks([]);
       return;
     }
 
-    const booksList = await getBooks(bookInfo, 0);
-    setBooks(booksList);
+    setLoadingBooks(true);
+
+    const booksList = await getBooks(searchValue, currentSearchPage);
+    const newBooksList = [...books, ...booksList];
+    setBooks(newBooksList);
+
+    setLoadingBooks(false);
   }
+
+  async function loadMoreBooks() {
+    const newPage = currentSearchPage + 1;
+    setCurrentSearchPage(newPage);
+    debouncedChange();
+  }
+
+  useEffect(() => {
+    debouncedChange();
+  }, [searchValue]);
 
   return (
     <Wrapper>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <HomeListContainer>
-          <SearchInput
-            placeholder={"Search book"}
-            blurOnSubmit={true}
-            onChangeText={async (data) => searchForBooks(data)}
-          />
-        </HomeListContainer>
+        <SearchInput
+          placeholder={"Search book"}
+          blurOnSubmit={true}
+          onChangeText={(search) => setSearchValue(search)}
+          value={searchValue}
+        />
       </TouchableWithoutFeedback>
       {books.length === 0 ? (
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -111,6 +134,18 @@ export function Home() {
                 }
               />
             )}
+            ListFooterComponent={
+              loadingBooks ? (
+                <ActivityIndicator color={colors.lightPurple} />
+              ) : (
+                <LoadBooksButton
+                  activeOpacity={0.6}
+                  onPress={async () => await loadMoreBooks()}
+                >
+                  <LoadBooksButtonLabel>Load Books</LoadBooksButtonLabel>
+                </LoadBooksButton>
+              )
+            }
           />
         </BooksListContainer>
       )}
