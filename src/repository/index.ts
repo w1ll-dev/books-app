@@ -11,16 +11,16 @@ export async function getBooks(query: string, page: number): Promise<Book[]> {
     const { items } = await requestAdapter(query, page);
     const booksList = items.map<Book>(
       ({
-        volumeInfo: { title, subtitle, authors, description, imageLinks },
+        volumeInfo,
         id,
       }: Response) =>
         ({
           id,
-          title,
-          subtitle,
-          authors,
-          description,
-          imageLinks
+          title: volumeInfo.title,
+          subtitle: volumeInfo.subtitle,
+          authors: volumeInfo.authors,
+          description: volumeInfo.description,
+          imageLinks: volumeInfo.imageLinks,
         } as Book)
     );
 
