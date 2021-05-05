@@ -10,11 +10,12 @@ export const SearchInput = styled.TextInput`
   height: 48px;
   margin-top: ${statusBarHeight + 50}px;
   padding: 0 16px;
-  color: ${colors.darkGrey};
+  color: ${colors.black};
   background: ${colors.white};
   align-items: flex-start;
   border-radius: 10px;
   font-family: ${fonts.title};
+  font-weight: bold;
   font-size: 16px;
   padding-left: 41px;
 `;
