@@ -17,3 +17,7 @@ export const CurrentlyReadingContainer = styled.View`
 export const DiscoverBookListContainer = styled.View`
   margin-right: -20px;
 `;
+
+export const BooksListContainer = styled(HomeListContainer)`
+  flex: 1;
+`;
