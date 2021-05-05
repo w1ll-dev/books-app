@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -34,13 +34,17 @@ const currentReadingImageMockUri =
   "http://books.google.com/books/content?id=eLRhDgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api";
 
 export function Home() {
+  const [searchValue, setSearchValue] = useState("");
   const [books, setBooks] = useState<Book[]>([]);
   const [loadingBooks, setLoadingBooks] = useState(false);
-  const [currentSearchPage, setCurrentSearchPage] = useState(0);
-  const [searchValue, setSearchValue] = useState("");
-  const debouncedChange = useDebounce(searchForBooks, 500);
+  
+  const searchPageRef = useRef(0);
+
+  const debouncedSearch = useDebounce(searchForBooks, 500);
+  const debouncedLoad = useDebounce(loadMoreBooks, 500);
 
   async function searchForBooks() {
+    searchPageRef.current = 0;
     if (searchValue === "") {
       setBooks([]);
       return;
@@ -48,21 +52,25 @@ export function Home() {
 
     setLoadingBooks(true);
 
-    const booksList = await getBooks(searchValue, currentSearchPage);
-    const newBooksList = [...books, ...booksList];
+    const newBooksList = await getBooks(searchValue, searchPageRef.current);
     setBooks(newBooksList);
 
     setLoadingBooks(false);
   }
 
   async function loadMoreBooks() {
-    const newPage = currentSearchPage + 1;
-    setCurrentSearchPage(newPage);
-    debouncedChange();
+    setLoadingBooks(true);
+    searchPageRef.current = searchPageRef.current + 1
+    
+    const booksList = await getBooks(searchValue, searchPageRef.current);
+    const newBooksList = [...books, ...booksList];
+
+    setBooks(newBooksList);
+    setLoadingBooks(false);
   }
 
   useEffect(() => {
-    debouncedChange();
+    debouncedSearch();
   }, [searchValue]);
 
   return (
@@ -124,6 +132,7 @@ export function Home() {
             data={books}
             showsVerticalScrollIndicator={false}
             numColumns={3}
+            keyExtractor={({id}) => id}
             columnWrapperStyle={{ justifyContent: "space-between" }}
             renderItem={({ item }) => (
               <BookCard
@@ -140,7 +149,7 @@ export function Home() {
               ) : (
                 <LoadBooksButton
                   activeOpacity={0.6}
-                  onPress={async () => await loadMoreBooks()}
+                  onPress={debouncedLoad}
                 >
                   <LoadBooksButtonLabel>Load Books</LoadBooksButtonLabel>
                 </LoadBooksButton>
