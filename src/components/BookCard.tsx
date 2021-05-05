@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import {
   Wrapper,
   BookImage,
@@ -12,12 +12,12 @@ interface BookCardProps {
   bookAuthor: string;
 }
 
-export function BookCard({ bookImageUri, bookTitle, bookAuthor }: BookCardProps) {
-  return (
+export const BookCard = memo(
+  ({ bookImageUri, bookTitle, bookAuthor }: BookCardProps) => (
     <Wrapper>
       <BookImage source={{ uri: bookImageUri }} />
       <BookTitle>{bookTitle}</BookTitle>
       <BookAuthor>{bookAuthor}</BookAuthor>
     </Wrapper>
-  );
-}
+  )
+);
