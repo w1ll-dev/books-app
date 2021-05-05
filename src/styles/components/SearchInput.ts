@@ -6,9 +6,8 @@ import { fonts } from "../fonts";
 const statusBarHeight = getStatusBarHeight();
 
 export const SearchInput = styled.TextInput`
-  width: 100%;
   height: 48px;
-  margin-top: ${statusBarHeight + 50}px;
+  margin: ${statusBarHeight + 50}px 20px 0px;
   padding: 0 16px;
   color: ${colors.black};
   background: ${colors.white};
@@ -18,4 +17,5 @@ export const SearchInput = styled.TextInput`
   font-weight: bold;
   font-size: 16px;
   padding-left: 41px;
+  margin-bottom: 30px;
 `;
