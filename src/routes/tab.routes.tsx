@@ -12,6 +12,7 @@ export const TabRoutes = () => (
       activeTintColor: colors.black,
       inactiveTintColor: colors.grey,
       style: { height: 59, padding: 10 },
+      keyboardHidesTabBar: true,
     }}
   >
     <Screen
