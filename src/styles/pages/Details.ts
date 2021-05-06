@@ -41,14 +41,15 @@ export const BookAuthor = styled(CommonText)`
 export const BookAbout = styled(CommonText)`
   font-size: 14px;
   color: ${colors.darkGreyWithOpacitySixty};
+  line-height: 29px;
 `;
 
 export const BackButton = styled.TouchableOpacity`
-  position: absolute;
-  left: 33px;
-  top: ${statusBarHeight + 55};
   width: 25px;
   height: 25px;
+  position: absolute;
+  left: 33px;
+  top: ${statusBarHeight + 55}px;
 `;
 
 export const BackArrow = styled(AntDesign).attrs(() => ({
@@ -57,6 +58,5 @@ export const BackArrow = styled(AntDesign).attrs(() => ({
   color: colors.black,
 }))`
   position: absolute;
-  left: 33px;
-  top: ${statusBarHeight + 55};
+
 `;
