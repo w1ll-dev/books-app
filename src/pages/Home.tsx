@@ -5,7 +5,6 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import { SearchInput } from "../styles/components/SearchInput";
 import {
   Wrapper,
   HomeListContainer,
@@ -14,12 +13,14 @@ import {
   LoadBooksButton,
   LoadBooksButtonLabel,
 } from "../styles/pages/Home";
+// import { SearchIcon, SearchInput } from "../styles/components/SearchInput";
 import {
   WelcomeMessage,
   DiscoverBookCard,
   ListTitle,
   CurrentlyReadingCard,
   BookCard,
+  SearchInput,
 } from "../components";
 import { ScrollView } from "react-native-gesture-handler";
 import { OvalExternalSvg } from "../components/svg/";
@@ -37,7 +38,7 @@ export function Home() {
   const [searchValue, setSearchValue] = useState("");
   const [books, setBooks] = useState<Book[]>([]);
   const [loadingBooks, setLoadingBooks] = useState(false);
-  
+
   const searchPageRef = useRef(0);
 
   const debouncedSearch = useDebounce(searchForBooks, 500);
@@ -60,8 +61,8 @@ export function Home() {
 
   async function loadMoreBooks() {
     setLoadingBooks(true);
-    searchPageRef.current = searchPageRef.current + 1
-    
+    searchPageRef.current = searchPageRef.current + 1;
+
     const booksList = await getBooks(searchValue, searchPageRef.current);
     const newBooksList = [...books, ...booksList];
 
@@ -79,7 +80,7 @@ export function Home() {
         <SearchInput
           placeholder={"Search book"}
           blurOnSubmit={true}
-          onChangeText={(search) => setSearchValue(search)}
+          onChangeText={setSearchValue}
           value={searchValue}
         />
       </TouchableWithoutFeedback>
@@ -132,7 +133,7 @@ export function Home() {
             data={books}
             showsVerticalScrollIndicator={false}
             numColumns={3}
-            keyExtractor={({id}) => id}
+            keyExtractor={({ id }) => id}
             columnWrapperStyle={{ justifyContent: "space-between" }}
             renderItem={({ item }) => (
               <BookCard
@@ -147,10 +148,7 @@ export function Home() {
               loadingBooks ? (
                 <ActivityIndicator color={colors.lightPurple} />
               ) : (
-                <LoadBooksButton
-                  activeOpacity={0.6}
-                  onPress={debouncedLoad}
-                >
+                <LoadBooksButton activeOpacity={0.6} onPress={debouncedLoad}>
                   <LoadBooksButtonLabel>Load Books</LoadBooksButtonLabel>
                 </LoadBooksButton>
               )
