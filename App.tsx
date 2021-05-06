@@ -2,6 +2,8 @@ import React from "react";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Routes } from "./src/routes";
+import { Main } from "./src";
+import { View } from "react-native";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -12,5 +14,5 @@ export default function App() {
 
   if (!loaded) return <AppLoading />;
 
-  return <Routes />;
+  return <Main />;
 }
