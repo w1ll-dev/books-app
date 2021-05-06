@@ -4,6 +4,7 @@ import AppLoading from "expo-app-loading";
 import { Routes } from "./src/routes";
 import { Main } from "./src";
 import { View } from "react-native";
+import { StateProvider } from "./src/context/globalState";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -14,5 +15,9 @@ export default function App() {
 
   if (!loaded) return <AppLoading />;
 
-  return <Main />;
+  return (
+    <StateProvider>
+      <Routes />
+    </StateProvider>
+  );
 }
