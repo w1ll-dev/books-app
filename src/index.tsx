@@ -1,52 +1,20 @@
 import React from "react";
-import { useEffect, useRef, useState } from "react";
-import { Keyboard, View } from "react-native";
+import { useEffect, useState } from "react";
+import { Keyboard } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { SearchInput } from "./components";
-import { useDebounce } from "./hooks/useDebounce";
-import { getBooks } from "./repository";
-import { Book } from "./repository/protocols";
-import { Routes } from "./routes";
-import { Wrapper } from "./styles/pages/Home";
+import { useGlobalContext } from "./context/globalState";
+import HomeStackRoutes from "./routes/home.stack.routes";
+import { Wrapper } from "./styles/pages/Main";
 
 export function Main() {
+  const { searchBooks } = useGlobalContext();
   const [searchValue, setSearchValue] = useState("");
-  const [books, setBooks] = useState<Book[]>([]);
-  const [loadingBooks, setLoadingBooks] = useState(false);
-
-  const searchPageRef = useRef(0);
-
-  const debouncedSearch = useDebounce(searchForBooks, 500);
-  const debouncedLoad = useDebounce(loadMoreBooks, 500);
-
-  async function searchForBooks() {
-    searchPageRef.current = 0;
-    if (searchValue === "") {
-      setBooks([]);
-      return;
-    }
-
-    setLoadingBooks(true);
-
-    const newBooksList = await getBooks(searchValue, searchPageRef.current);
-    setBooks(newBooksList);
-
-    setLoadingBooks(false);
-  }
-
-  async function loadMoreBooks() {
-    setLoadingBooks(true);
-    searchPageRef.current = searchPageRef.current + 1;
-
-    const booksList = await getBooks(searchValue, searchPageRef.current);
-    const newBooksList = [...books, ...booksList];
-
-    setBooks(newBooksList);
-    setLoadingBooks(false);
-  }
 
   useEffect(() => {
-    debouncedSearch();
+    if (searchValue === "") Keyboard.dismiss;
+    
+    searchBooks(searchValue);
   }, [searchValue]);
 
   return (
@@ -59,7 +27,7 @@ export function Main() {
           value={searchValue}
         />
       </TouchableWithoutFeedback>
-      <Routes />
+      <HomeStackRoutes />
     </Wrapper>
   );
 }
