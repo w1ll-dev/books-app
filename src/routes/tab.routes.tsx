@@ -1,9 +1,11 @@
 import React from "react";
 import { colors } from "../styles/colors";
 import { Feather } from "@expo/vector-icons";
-import { Libraries, Profile } from "../pages";
+import { Home, Libraries, Profile } from "../pages";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import StackRoutes from "./stack.routes";
+import HomeStackRoutes from "./home.stack.routes";
+import { Main } from "..";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -18,7 +20,7 @@ export const TabRoutes = () => (
   >
     <Screen
       name={"Home"}
-      component={StackRoutes}
+      component={Main}
       options={{
         tabBarIcon: ({ size, color }) => (
           <Feather size={size} color={color} name={"home"} />
