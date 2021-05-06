@@ -1,5 +1,6 @@
 import { Home } from "./Home";
 import { Details } from "./Details";
-import { User } from "./User";
+import { Libraries } from "./Libraries";
+import { Profile } from "./Profile";
 
-export { Home, Details, User };
+export { Home, Details, Profile, Libraries };

@@ -1,7 +1,7 @@
 import React from "react";
 import { colors } from "../styles/colors";
 import { Feather } from "@expo/vector-icons";
-import { Home, Details, User } from "../pages";
+import { Home, Libraries, Profile } from "../pages";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const { Navigator, Screen } = createBottomTabNavigator();
@@ -25,8 +25,8 @@ export const TabRoutes = () => (
       }}
     />
     <Screen
-      name={"Details"}
-      component={Details}
+      name={"Libraries"}
+      component={Libraries}
       options={{
         tabBarIcon: ({ size, color }) => (
           <Feather size={size} color={color} name={"book"} />
@@ -34,8 +34,8 @@ export const TabRoutes = () => (
       }}
     />
     <Screen
-      name={"User"}
-      component={User}
+      name={"Profile"}
+      component={Profile}
       options={{
         tabBarIcon: ({ size, color }) => (
           <Feather size={size} color={color} name={"user"} />
