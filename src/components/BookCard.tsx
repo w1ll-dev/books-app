@@ -1,4 +1,5 @@
-import React, { memo } from "react";
+import { useNavigation } from "@react-navigation/core";
+import React from "react";
 import {
   Wrapper,
   BookImage,
@@ -10,15 +11,31 @@ interface BookCardProps {
   bookImageUri?: string;
   bookTitle: string;
   bookAuthor: string;
-  onSelected: any
+  bookAbout: string;
 }
 
-export const BookCard = memo(
-  ({ bookImageUri, bookTitle, bookAuthor, onSelected }: BookCardProps) => (
-    <Wrapper onPress={onSelected}>
+export function BookCard({
+  bookImageUri,
+  bookTitle,
+  bookAuthor,
+  bookAbout
+}: BookCardProps) {
+  const navigation = useNavigation();
+
+  function onBookSelected() {
+    navigation.navigate("Details", {
+      bookImageUri,
+      bookTitle,
+      bookAuthor,
+      bookAbout,
+    });
+  }
+
+  return (
+    <Wrapper onPress={onBookSelected}>
       <BookImage source={{ uri: bookImageUri }} />
       <BookTitle>{bookTitle}</BookTitle>
       <BookAuthor>{bookAuthor}</BookAuthor>
     </Wrapper>
-  )
-);
+  );
+}
