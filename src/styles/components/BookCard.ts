@@ -19,11 +19,11 @@ export const BookTitle = styled(CommonText)`
   font-weight: bold;
   font-size: 12px;
   margin-bottom: 5px;
-  color: ${colors.darkGreyWithOpacity};
+  color: ${colors.darkGreyWithOpacityEighty};
 `;
 
 export const BookAuthor = styled(CommonText)`
   font-weight: bold;
   font-size: 10px;
-  color: ${colors.darkGreyWithOpacity}
+  color: ${colors.darkGreyWithOpacityEighty}
 `;
