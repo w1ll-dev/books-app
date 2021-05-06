@@ -1,14 +1,13 @@
 import styled from "styled-components/native";
-import { Container } from "../Common";
 import { colors } from "../colors";
 import { fonts } from "../fonts";
 
-export const Wrapper = styled(Container)`
+export const Wrapper = styled.ScrollView.attrs(() => ({}))`
   background: ${colors.beige};
 `;
 
 export const HomeListContainer = styled.View`
-  margin: 0 20px 30px;
+  padding: 0 20px 30px;
 `;
 
 export const DiscoverBookListContainer = styled.View`
@@ -17,6 +16,7 @@ export const DiscoverBookListContainer = styled.View`
 
 export const BooksListContainer = styled(HomeListContainer)`
   flex: 1;
+  background: ${colors.beige};
 `;
 
 export const LoadBooksButton = styled.TouchableOpacity`
