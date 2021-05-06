@@ -3,6 +3,7 @@ import { CurrentlyReadingCard } from "./CurrentlyReadingCard";
 import { ListTitle } from "./ListTitle";
 import { WelcomeMessage } from "./WelcomeMessage";
 import { BookCard } from "./BookCard";
+import { SearchInput } from "./SearchInput";
 
 export {
   DiscoverBookCard,
@@ -10,4 +11,5 @@ export {
   WelcomeMessage,
   CurrentlyReadingCard,
   BookCard,
+  SearchInput
 };
