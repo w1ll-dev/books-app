@@ -30,6 +30,7 @@ import { getBooks } from "../repository";
 import { Book } from "../repository/protocols";
 import { colors } from "../styles/colors";
 import { useDebounce } from "../hooks/useDebounce";
+import { useNavigation } from "@react-navigation/core";
 
 const currentReadingImageMockUri =
   "http://books.google.com/books/content?id=eLRhDgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api";
@@ -43,6 +44,8 @@ export function Home() {
 
   const debouncedSearch = useDebounce(searchForBooks, 500);
   const debouncedLoad = useDebounce(loadMoreBooks, 500);
+
+  const navigation = useNavigation();
 
   async function searchForBooks() {
     searchPageRef.current = 0;
@@ -68,6 +71,15 @@ export function Home() {
 
     setBooks(newBooksList);
     setLoadingBooks(false);
+  }
+
+  function onBookSelected(book: Book) {
+    navigation.navigate("Details", {
+      bookImageUri: book.imageLinks?.thumbnail ?? '',
+      bookTitle: book.title,
+      bookAuthor: book.authors[0],
+      bookAbout: book.description,
+    });
   }
 
   useEffect(() => {
@@ -137,6 +149,7 @@ export function Home() {
             columnWrapperStyle={{ justifyContent: "space-between" }}
             renderItem={({ item }) => (
               <BookCard
+                onSelected={() => onBookSelected(item)}
                 bookImageUri={item.imageLinks?.thumbnail}
                 bookTitle={item.title}
                 bookAuthor={
