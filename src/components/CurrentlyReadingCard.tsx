@@ -52,7 +52,7 @@ export function CurrentlyReadingCard({
           </ChapterInfoContainer>
         </BookInfoContainer>
         <RectangleSvg discoverBooksList={false} />
-        <CircleSvg discoverBooksList={false} />
+        <CircleSvg radius={9} size={20} left={224} top={-6} />
         <BlankShapeSvg
           width={150}
           height={17}

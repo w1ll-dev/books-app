@@ -37,7 +37,7 @@ export function DiscoverBookCard({
         backgroundColor,
         width: firstCard ? 272 : 250,
         height: firstCard ? 139 : 128,
-        marginTop: !firstCard ? 5 : 0
+        marginTop: !firstCard ? 5 : 0,
       }}
     >
       {firstCard && <OvalSvg />}
@@ -61,7 +61,7 @@ export function DiscoverBookCard({
       <BookImage source={{ uri: imageUri }} />
       <RectangleSvg discoverBooksList={true} />
       <TriangleSvg />
-      <CircleSvg discoverBooksList={true} />
+      <CircleSvg size={20} left={144} top={14} radius={9}/>
     </Wrapper>
   );
 }

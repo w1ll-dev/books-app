@@ -4,41 +4,26 @@ import Svg, { Circle } from "react-native-svg";
 import { colors } from "../../styles/colors";
 
 interface CircleProps {
-  discoverBooksList: boolean;
+  size: number;
+  radius: number;
+  left: number;
+  top: number;
 }
 
-export default memo(({ discoverBooksList }: CircleProps) => {
-  const { container, containerCurrentlyReading } = styles;
-
-  return (
-    <Svg
-      width={20}
-      height={20}
-      viewBox="0 0 20 20"
-      fill="none"
-      style={discoverBooksList ? container : containerCurrentlyReading}
-    >
-      <Circle
-        cx={10}
-        cy={10}
-        r={9}
-        stroke={colors.lightPurple}
-        strokeWidth={2}
-      />
-    </Svg>
-  );
-});
-
-const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    right: "40.44%",
-    top: "10.07%",
-    bottom: "76.98%",
-  },
-  containerCurrentlyReading: {
-    position: "absolute",
-    left: 223,
-    top: -7,
-  },
-});
+export default memo(({ left, top, size, radius }: CircleProps) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox={`0 0 ${size} ${size}`}
+    fill="none"
+    style={{ position: "absolute", left, top }}
+  >
+    <Circle
+      cx={(size / 2).toFixed()}
+      cy={(size / 2).toFixed()}
+      r={9}
+      stroke={colors.lightPurple}
+      strokeWidth={2}
+    />
+  </Svg>
+));
