@@ -1,8 +1,15 @@
 import { useNavigation, useRoute } from "@react-navigation/core";
 import React from "react";
+import { Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
-import { FillCircleShape } from "../components/svg";
+import { DetailsBottomBar } from "../components/DetailsBottomBar";
+import {
+  CircleSvg,
+  FillCircleShape,
+  OvalSvgDetailsBigger,
+  OvalSvgDetailsMinor,
+} from "../components/svg";
 import { colors } from "../styles/colors";
 import {
   BookTitle,
@@ -13,6 +20,7 @@ import {
   HeaderBackground,
   Wrapper,
   BackButton,
+  ContentWrapper,
 } from "../styles/pages/Details";
 
 const statusBarHeight = getStatusBarHeight();
@@ -37,29 +45,37 @@ export function Details() {
 
   return (
     <Wrapper>
-      <HeaderBackground>
-        <BackButton onPress={navigation.goBack}>
-          <BackArrow />
-        </BackButton>
-        <FillCircleShape
-          backgroundColor={colors.lightPink}
-          circleDiameter={15}
-          left={47}
-          top={statusBarHeight + 125}
-        />
-        <FillCircleShape
-          backgroundColor={colors.darkBlue}
-          circleDiameter={63}
-          left={74}
-          top={statusBarHeight + 115}
-        />
-      </HeaderBackground>
+      <HeaderBackground />
+      <BackButton onPress={navigation.goBack}>
+        <BackArrow />
+      </BackButton>
+      <FillCircleShape
+        backgroundColor={colors.lightPink}
+        circleDiameter={15}
+        left={57}
+        top={statusBarHeight + 125}
+      />
+      <FillCircleShape
+        backgroundColor={colors.darkBlue}
+        circleDiameter={63}
+        left={84}
+        top={statusBarHeight + 115}
+      />
+      <OvalSvgDetailsBigger />
+      <OvalSvgDetailsMinor />
+      <CircleSvg size={24} radius={12} top={86} left={249} />
       <BookImage source={{ uri: bookImageUri }} />
-      <BookTitle>{bookTitle}</BookTitle>
-      <BookAuthor>{bookAuthor}</BookAuthor>
-      <ScrollView showsVerticalScrollIndicator={false} style={{ height: 275 }}>
-        <BookAbout>{bookAbout}</BookAbout>
-      </ScrollView>
+      <ContentWrapper>
+        <BookTitle>{bookTitle}</BookTitle>
+        <BookAuthor>{bookAuthor}</BookAuthor>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={{ height: 275 }}
+        >
+          <BookAbout>{bookAbout}</BookAbout>
+        </ScrollView>
+      </ContentWrapper>
+      <DetailsBottomBar />
     </Wrapper>
   );
 }
