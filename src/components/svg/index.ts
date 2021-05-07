@@ -7,6 +7,8 @@ import BlankShapeSvg from "./BlankShapeSvg";
 import OvalExternalSvg from "./OvalExternalSvg";
 import TransparentCircularShape from "./TransparentCircularShapeSvg";
 import FillCircleShape from "./FillCircleShape";
+import OvalSvgDetailsBigger from "./OvalSvgDetailsBigger";
+import OvalSvgDetailsMinor from "./OvalSvgDetailsMinor";
 
 export {
   OvalSvg,
@@ -17,5 +19,7 @@ export {
   BlankShapeSvg,
   OvalExternalSvg,
   TransparentCircularShape,
-  FillCircleShape
+  FillCircleShape,
+  OvalSvgDetailsBigger,
+  OvalSvgDetailsMinor,
 };
